@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="MasterPage.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="title">
+        <title>Video Search</title>
+
+    </ui:define>
+
+    <ui:define name="article">
+        <!-- youtube player -->
+        <div id="player"></div>
+        <script>
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '450',
+                    width: '740',
+                    videoId: '#{showMovieController.movieId}',
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data === YT.PlayerState.PLAYING) {
+                    setTimeout(stopVideo, 6000000);
+                    done = true;
+                }
+            }
+            function stopVideo() {
+                player.stopVideo();
+            }
+        </script>
+        <!-- end of youtube player -->
+
+        <div id="movieDesc"> 
+            <h3> #{showMovieController.movie.title} </h3>
+            <h4> By <strong>#{showMovieController.movie.channelTitle}</strong> </h4>
+        </div>
+
+        <!-- facebook like button-->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <br />
+        <div class="fb-like" data-href="#{showMovieController.movie.mediumUrl}" data-width="450" data-show-faces="true" data-send="true"></div>
+        <!-- end of facebook like button-->
+
+        <!-- twitter button : post tweet -->
+        <div id="twitterButton">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en-gb">Tweet</a>
+            <script>!function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + '://platform.twitter.com/widgets.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'twitter-wjs');
+            </script>
+        </div>
+        <!-- end of twitter button -->
+
+        <!-- share group-->
+        <div id="dic">
+            <ul>
+                <li id='nav-about' class="current"><a>About</a></li>
+                <li id='nav-share'><a>Share</a></li>
+            </ul>
+        </div>
+        <div id='about'>
+            <p> #{showMovieController.movie.publishAt} </p>
+            <p> Description: <br/><hr/> #{showMovieController.movie.desc} <hr/></p>
+        </div>
+        <div id='share'>
+            <h:outputLink id="facebook" value="#{twitterController.twitterAuth}" target="_blank" rendered="true">
+                <h:graphicImage url="resources/img/facebook-icon.gif" />
+                <f:ajax execute="@this"/>
+            </h:outputLink>
+            <h:outputLink id="twitter" value="#{twitterController.twitterAuth}" target="_blank" rendered="true">
+                <h:graphicImage url="resources/img/twitter-icon.jpg" />
+                <f:ajax execute="@this"/>
+            </h:outputLink>
+            <h:inputText id="oAuth" styleClass="oAuth"  
+                         label="Verifier" size="32" value="#{twitterController.verifier}" required="true" 
+                         requiredMessage="You must enter a verifier!">
+            </h:inputText>
+            <div id="sub">
+                <h:commandButton styleClass="sub" image="./resources/img/share-icon.png" action="#{twitterController.confirmVerifier()}">
+                    <f:ajax execute="oAuth" render="recentUserTimeline"/>
+                </h:commandButton>
+            </div>
+        </div>
+        <!-- end of share group-->
+
+        <div id="timeline">
+            <div id="title"> Recent Tweets </div>
+            <h:panelGrid id="recentUserTimeline" columns="1" width="600px">
+                <ui:repeat value="#{twitterController.tweets}" var="tweet" varStatus="status">
+                    <div id="group">
+                        <hr class="clear"/>
+                        <div id="profile-img">
+                            <h:graphicImage url="#{tweet.profile_image_url}"></h:graphicImage>
+                        </div>
+                        <div id="tweet-content">
+                            <span id="screen-name">#{tweet.screen_name}</span>
+                            <span id="create-date">#{tweet.created_at}</span>
+                            <span id="follow"> Follow: #{tweet.favorite_count}</span>
+                            <p id="tweet-text"> #{tweet.text}</p>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </h:panelGrid>
+        </div>
+
+        <!--  facebook comment box-->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <br class='clear'/>
+        <p>All Comments</p>
+        <div class="fb-comments" data-href="#{showMovieController.movie.mediumUrl}" data-width="470"></div>
+        <!--  end of facebook comment box-->
+
+    </ui:define>
+    <ui:define name="aside">
+        <div id="flip1">
+            <p> Popular Videos </p> 
+        </div>
+        <hr />
+        <div id="panel1">
+            <ui:repeat value="#{movieController.pmovies}" var="movie" varStatus="status">
+                <div class="optionItem">
+                    <div id="div1">
+                        <h:link outcome="showMovie">
+                            <h:graphicImage value="#{movie.defaultUrl}" />
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="#{showMovieController.pageFrom}"></f:param>
+                        </h:link>
+
+                    </div>
+                    <div id="div2">
+                        <h:link value="#{movie.title}" outcome="showMovie">
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="#{showMovieController.pageFrom}"></f:param>
+                        </h:link>
+                        <p> by <strong> #{movie.channelTitle} </strong> </p>
+                    </div>
+                </div>
+            </ui:repeat>
+        </div>
+        <br />
+        <div id="flip2">
+            <p> Search Result </p>
+        </div>
+        <hr />
+        <div id="panel2">
+            <ui:repeat value="#{movieController.movies}" var="movie" varStatus="status">
+                <div class="optionItem">
+                    <div id="div1">
+                        <h:link outcome="showMovie">
+                            <h:graphicImage value="#{movie.defaultUrl}" />
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="#{showMovieController.pageFrom}"></f:param>
+                        </h:link>
+
+                    </div>
+                    <div id="div2">
+                        <h:link value="#{movie.title}" outcome="showMovie">
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="#{showMovieController.pageFrom}"></f:param>
+                        </h:link>
+                        <p> by <strong> #{movie.channelTitle} </strong> </p>
+                    </div>
+                </div>
+            </ui:repeat>  
+        </div>
+    </ui:define>
+</ui:composition>

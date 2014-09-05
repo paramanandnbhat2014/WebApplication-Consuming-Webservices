@@ -1,0 +1,391 @@
+@media screen and (max-width: 1350px) {
+    #header-total{
+        height:130px;
+    }
+
+    #header-nav{
+        margin-top: 50px;
+    }
+
+    #menu{
+        height:100px;
+    }
+
+    #menu li span
+    {
+        display: block;
+        padding: 0em 1em;
+        height: auto;
+        letter-spacing: 0.1em;
+        line-height: 80px;
+        text-decoration: none;
+        font-size: 90%;
+        font-weight: 400;
+        text-transform: uppercase;
+        outline: 0;
+        color: #FFF;
+    }
+
+    #logo h1{
+        font-size: 20px;
+    }
+    
+    #player{
+        width:630px;
+        height:400px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    #header-total{
+        height:130px;
+    }
+
+    #header-nav{
+        margin-top: 50px;
+    }
+
+    #menu{
+        height:100px;
+    }
+
+    #menu li span
+    {
+        display: block;
+        padding: 0em 1em;
+        height: auto;
+        letter-spacing: 0.1em;
+        line-height: 80px;
+        text-decoration: none;
+        font-size: 90%;
+        font-weight: 400;
+        text-transform: uppercase;
+        outline: 0;
+        color: #FFF;
+    }
+
+    #logo h1{
+        font-size: 20px;
+    }
+    
+    #player{
+        width:650px;
+        height:400px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    #header-total{
+        height:130px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:100px;
+        margin-top: 50px;
+    }
+
+    #menu{
+        height:100px;
+    }
+
+    #menu li span
+    {
+        font-size: 70%;
+        font-weight: 400;
+    }
+
+    #logo h1{
+        font-size: 13px;
+    }
+
+    article{
+        width:95%;
+        clear:both;
+    }
+
+    aside{
+        width:95%;
+        clear:both;
+    }
+
+    #player{
+        width:550px;
+        height:400px;
+    }
+}
+
+
+@media screen and (max-width: 950px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+    }
+
+    #menu li span
+    {
+        font-size: 50%;
+        font-weight: 400;
+    }
+
+    #logo h1{
+        font-size: 10px;
+    }
+
+    article{
+        width:92%;
+        clear:both;
+    }
+
+    aside{
+        width:92%;
+        clear:both;
+    }
+
+    #player{
+        width:500px;
+        height:300px;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+    }
+
+    #menu li span
+    {
+        font-size: 40%;
+        font-weight: 400;
+    }
+
+    #logo{
+        
+    }
+    
+    #logo h1{
+        font-size: 11px;
+        padding:20px 60px;
+    }
+
+    article{
+        width:90%;
+        clear:both;
+    }
+
+    aside{
+        width:90%;
+        clear:both;
+    }
+
+    #player{
+        width:500px;
+        height:300px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+    }
+
+    #menu li span
+    {
+        font-size: 35%;
+        font-weight: 400;
+    }
+
+    #logo{
+        
+    }
+    
+    #logo h1{
+        font-size: 11px;
+        padding:15px 40px;
+    }
+
+    article{
+        width:90%;
+        clear:both;
+    }
+
+    aside{
+        width:90%;
+        clear:both;
+    }
+
+    #player{
+        width:450px;
+        height:250px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+    }
+
+    #menu li span
+    {
+        font-size: 30%;
+        font-weight: 400;
+    }
+
+    #logo{
+
+    }
+    
+    #logo h1{
+        font-size: 11px;
+        padding:10px 30px;
+    }
+
+    article{
+        width:85%;
+        clear:both;
+    }
+
+    aside{
+        width:85%;
+        clear:both;
+    }
+
+    #player{
+        width:300px;
+        height:200px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+        float:left;
+    }
+
+    #menu li span
+    {
+        font-size: 25%;
+        font-weight: 400;
+    }
+
+    #logo{
+
+    }
+    
+    #logo h1{
+        font-size: 11px;
+        padding:10px 30px;
+    }
+
+    article{
+        width:85%;
+        clear:both;
+    }
+
+    aside{
+        width:85%;
+        clear:both;
+    }
+
+    #player{
+        width:200px;
+        height:100px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #header-total{
+        height:100px;
+    }
+
+    #header-nav{
+        width:100%;
+        height:70px;
+        margin-top: 30px;
+    }
+
+    #menu{
+        height:70px;
+        float:left;
+    }
+
+    #menu li span
+    {
+        font-size: 25%;
+        font-weight: 400;
+    }
+
+    #logo{
+
+    }
+    
+    #logo h1{
+        font-size: 8px;
+        padding:10px 30px;
+    }
+
+    article{
+        width:80%;
+        clear:both;
+    }
+
+    aside{
+        width:80%;
+        clear:both;
+    }
+
+    #player{
+        width:150px;
+        height:80px;
+    }
+}

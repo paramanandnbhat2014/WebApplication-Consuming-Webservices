@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="MasterPage.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="title">
+        <title>Flickr</title>
+        <script text="text/javascript">
+            function check(form)
+            {
+                var key = form[form.id + ":keyPhoto"].value;
+
+                if (key.indexOf('sex') > -1) {
+                    alert("Sensitive term not allowed");
+                    return false;
+                } else if (key.indexOf('fuck') > -1 || key.indexOf('fuc') > -1) {
+                    alert("Sensitive term not allowed");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+
+    </ui:define>
+
+    <ui:define name="article">
+        <div id="search-container">
+            <h3>Photo Search</h3>
+            <h:inputText id="keyPhoto" styleClass="keyWord"  
+                         label="Name" size="32" value="#{flickrController.queryImg}" required="true" 
+                         requiredMessage="You must enter a key word!">
+            </h:inputText> 
+            <h:commandButton id="nextStep" styleClass="search" image="./resources/img/search.png" 
+                             action="#{flickrController.sendRequest}"
+                             onclick="return check(form)">
+                <f:ajax execute="keyPhoto" render="result-message-photo repeat-panel-photo" />
+            </h:commandButton>
+            <br /><br /><br />
+            <h:message for="keyPhoto" styleClass="check"/>
+        </div>
+
+        <br/>
+        <h:outputText id="result-message-photo" value="#{flickrController.resultMessage}" />
+        <h:panelGrid id="repeat-panel-photo" columns="1">
+            <ui:repeat value="#{flickrController.flickrs}" var="photo" varStatus="status">
+                <div class="img-frame">
+                    <h:outputLink value="#{photo.url}">
+                        <h:graphicImage value="#{photo.url}" />
+                    </h:outputLink>
+                </div>
+            </ui:repeat>
+        </h:panelGrid>
+
+    </ui:define>
+
+    <ui:define name="ajax">
+    </ui:define>
+</ui:composition>
