@@ -1,0 +1,102 @@
+.popItems{
+    margin:5px 0px 0px 0px;
+    width:31%;
+    height:250px;
+    float:left;
+}
+
+#img{
+    display: block;
+    width:100%;
+    height:auto;
+    float: left;
+    margin:0px 10px;    
+    font: 12pt normal Arial, sans-serif;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+#img a img{
+    width:220px;
+    border:2px solid #DFDFDF;
+    position: absolute; 
+}
+
+#img p {
+    width:55px;
+    position: relative;
+    margin-top: 110px;
+    margin-left: 165px;
+    color:#FFF;
+    font-size: 13px;
+    background: #000000;
+}
+
+#img-text{
+    width:100%;
+    height:auto;
+    float: left;
+    margin:0px 10px;
+    padding:0px 0px 0px 0px;
+}
+
+#img-text a, p{
+    font-family:Arial;
+}
+
+#img-text a{
+    color:#3366FF;
+    font-size: 15px;
+    font-weight:bold;
+}
+
+#img-text p{
+    color:black;
+    font-size: 12px;
+}
+
+/* slide  */
+#slideshow {
+    position:relative;
+    height:500px;
+}
+
+#slideshow DIV {
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+    opacity:0.0;
+    height: 400px;
+    background-color: #DFDFDF;
+    border-radius: 15px;
+}
+#slideshow DIV p {
+  margin-left: 20px;  
+}
+
+#slideshow DIV.active {
+    z-index:10;
+    opacity:1.0;
+}
+
+#slideshow DIV.last-active {
+    z-index:9;
+}
+
+#slideshow DIV IMG {
+    width:100%;
+    height: 450px;
+    display: block;
+    border: 3px solid #FFF;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.check{
+    background: yellow;
+    
+}

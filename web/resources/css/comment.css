@@ -1,0 +1,56 @@
+#result{
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #696969;
+    padding-bottom: 10px;
+}
+
+#comment{
+    width:600px;
+    height:100px;
+    padding:10px;
+    border:1px solid #FFFFFF;
+    background: #DDDDDD;
+    border-radius: 10px;
+    margin:5px 0px;
+}
+
+#comment:hover{
+    background: #A8A8A8;
+}
+
+#comment-header{
+    padding:2px 5px;
+    width:590px;
+    height: 20px;
+    background: #A8A8A8;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#comment-header{
+    background: #FFFFFF;
+}
+
+#header-left{
+    width:480px;
+    float:left;
+
+}
+
+#header-right{
+    width:100px;
+    float:right;
+
+}
+
+#comment-content{
+    clear:both;
+    padding:2px 5px;
+    width: 600px;
+    height: 60px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+

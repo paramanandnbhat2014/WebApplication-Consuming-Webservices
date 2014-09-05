@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="MasterPage.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="title">
+        <title>Home Page</title>
+    </ui:define>
+
+    <ui:define name="article">
+        <div id="slideshow">
+            <div class="active">
+                <h:graphicImage value="#{movieController.pmovies[0].mediumUrl}" />
+
+            </div>
+
+            <div>
+                <h:graphicImage value="#{movieController.pmovies[1].mediumUrl}" />
+
+            </div>
+
+            <div>
+                <h:graphicImage value="#{movieController.pmovies[2].mediumUrl}" />
+
+            </div>
+
+            <div>
+                <h:graphicImage value="#{movieController.pmovies[3].mediumUrl}" />
+
+            </div>
+
+            <div>
+                <h:graphicImage value="#{movieController.pmovies[4].mediumUrl}" />
+
+            </div>
+            <div>
+                <h:graphicImage value="#{movieController.pmovies[5].mediumUrl}" />
+
+            </div>
+
+        </div>
+
+        <div>
+            <h3>Popular videos</h3>
+
+            <hr />
+            <ui:repeat value="#{movieController.pmovies}" var="movie" varStatus="status">
+                <div class="popItems">
+                    <div id="img">
+                        <h:link outcome="showMovie">
+                            <h:graphicImage value="#{movie.mediumUrl}" />
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="home"></f:param>
+                        </h:link>
+                        <p>#{movie.duration}</p>
+                    </div>
+                    <div id="img-text">
+                        <h:link value="#{movie.title}" outcome="showMovie">
+                            <f:param name="v" value="#{movie.id}"></f:param>
+                            <f:param name="s" value="#{status.index}"></f:param>
+                            <f:param name="pageFrom" value="home"></f:param>
+                        </h:link>
+                        <p> by <strong> #{movie.channelTitle} </strong> </p>
+
+                    </div>
+                </div>
+            </ui:repeat>
+        </div>
+    </ui:define>
+
+</ui:composition>

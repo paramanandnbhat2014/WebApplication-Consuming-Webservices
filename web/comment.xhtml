@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="MasterPage.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="title">
+        <title>Comment</title>
+        <script text="text/javascript">
+            function check(form)
+            {
+                var key = form[form.id + ":key"].value;
+
+                if (key.indexOf('sex') > -1) {
+                    alert("Sensitive term not allowed");
+                    return false;
+                } else if (key.indexOf('fuck') > -1) {
+                    alert("Sensitive term not allowed");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+    </ui:define>
+
+    <ui:define name="article">
+        <div id="search-container">
+            <h3>Search Comment</h3>
+            <h:inputText id="key" styleClass="keyWord"  
+                         label="Name" size="32" value="#{reviewController.queryWord}" required="true" 
+                         requiredMessage="You must enter a key word!">
+            </h:inputText> 
+            <h:commandButton id="next" styleClass="search" image="./resources/img/search.png" 
+                             action="#{reviewController.sendRequest}"
+                             onclick="return check(form)">
+                <f:ajax execute="key" render="result-comment repeat-panel-comment" />
+            </h:commandButton>
+            <br /><br /><br />
+            <h:message for="key" styleClass="check"/>
+        </div>
+        <br/>
+        <h:outputText id="result-comment" value="#{reviewController.resultMessage}" />
+        <h:panelGrid id="repeat-panel-comment" columns="1">
+            <p id="result">#{reviewController.movieName}</p>
+            <ui:repeat value="#{reviewController.reviews}" var="r" varStatus="status">
+                <div id="comment">
+                    <div id="comment-header">
+                        <span id="header-left"> #{status.index + 1}. #{r.critic}</span>
+                        <span id="header-right"> #{r.date} </span>
+                    </div>
+                    <div id="comment-content">
+                        <p> <strong> #{r.quote} </strong> </p>
+                    </div>
+                </div>
+            </ui:repeat>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>
